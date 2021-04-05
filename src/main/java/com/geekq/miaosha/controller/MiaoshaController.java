@@ -35,7 +35,7 @@ import static com.geekq.miaosha.common.enums.ResultStatus.*;
 @RequestMapping("/miaosha")
 public class MiaoshaController implements InitializingBean {
 
-    private static Logger logger = LoggerFactory.getLogger(MiaoshaController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MiaoshaController.class);
 
     @Autowired
     MiaoShaUserService userService;
@@ -89,7 +89,7 @@ public class MiaoshaController implements InitializingBean {
 //		}
 
         //是否已经秒杀到
-        MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(Long.valueOf(user.getNickname()), goodsId);
+        MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(Long.parseLong(user.getNickname()), goodsId);
         if (order != null) {
             result.withError(REPEATE_MIAOSHA.getCode(), REPEATE_MIAOSHA.getMessage());
             return result;
@@ -160,8 +160,7 @@ public class MiaoshaController implements InitializingBean {
 
     @RequestMapping(value = "/verifyCodeRegister", method = RequestMethod.GET)
     @ResponseBody
-    public ResultGeekQ<String> getMiaoshaVerifyCod(HttpServletResponse response
-                                                  ) {
+    public ResultGeekQ<String> getMiaoshaVerifyCod(HttpServletResponse response) {
         ResultGeekQ<String> result = ResultGeekQ.build();
         try {
             BufferedImage image = miaoshaService.createVerifyCodeRegister();
@@ -171,11 +170,12 @@ public class MiaoshaController implements InitializingBean {
             out.close();
             return result;
         } catch (Exception e) {
-            logger.error("生成验证码错误-----注册:{}", e);
+            logger.error("生成验证码错误-----注册: " + e);
             result.withError(MIAOSHA_FAIL.getCode(), MIAOSHA_FAIL.getMessage());
             return result;
         }
     }
+
     @RequestMapping(value = "/verifyCode", method = RequestMethod.GET)
     @ResponseBody
     public ResultGeekQ<String> getMiaoshaVerifyCod(HttpServletResponse response, MiaoshaUser user,
@@ -198,10 +198,10 @@ public class MiaoshaController implements InitializingBean {
             return result;
         }
     }
+
     /**
      * 系统初始化
-     *
-     * @throws Exception
+     * @throws Exception:
      */
     @Override
     public void afterPropertiesSet() throws Exception {

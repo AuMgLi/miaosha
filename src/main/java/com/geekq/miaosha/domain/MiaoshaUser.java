@@ -21,9 +21,10 @@ public class MiaoshaUser {
 	private Date registerDate;
 	private Date lastLoginDate;
 	private Integer loginCount;
+
 	@Override
 	public String toString() {
-		return "Logininfo{" +
+		return "Login info{" +
 				"id=" + id +
 				", nickname='" + nickname + '\'' +
 				", password='" + password + '\'' +

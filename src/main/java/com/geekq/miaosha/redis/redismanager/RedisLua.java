@@ -1,6 +1,5 @@
 package com.geekq.miaosha.redis.redismanager;
 
-import com.geekq.miaosha.controller.LoginController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -13,7 +12,7 @@ import java.util.List;
  */
 public class RedisLua {
 
-    private static Logger logger = LoggerFactory.getLogger(RedisLua.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisLua.class);
 
     /**
      * 未完成  需 evalsha更方便 限制ip 或者 手机号访问次数
@@ -32,65 +31,62 @@ public class RedisLua {
                         "return 1 elseif tonumber(num)>" +
                         "tonumber(ARGV[2]) then return 0 else return 1 end";
 
-        List<String> keys = new ArrayList<String>();
+        List<String> keys = new ArrayList<>();
         keys.add("ip:limit:127.0.0.1");
-        List<String> argves = new ArrayList<String>();
-        argves.add("6000");
-        argves.add("5");
-        jedis.auth("xxxx");
+        List<String> args = new ArrayList<>();
+        args.add("6000");
+        args.add("5");
+//        jedis.auth("xxxx");
 //        Object evalSha = jedis.evalsha(lua);
         String luaScript = jedis.scriptLoad(lua);
         System.out.println(luaScript);
-        Object object = jedis.evalsha(luaScript, keys, argves);
+        Object object = jedis.evalsha(luaScript, keys, args);
         System.out.println(object);
     }
 
     /**
      * 统计访问次数
      */
-    public static Object getVistorCount(String key) {
-
-        Jedis jedis = null;
-        Object object = null;
+    public static Object getVisitorCount(String key) {
+        Jedis jedis;
+        Object object;
         try {
             jedis = RedisManager.getJedis();
 
         String count =
                 "local num=redis.call('get',KEYS[1]) return num";
-        List<String> keys = new ArrayList<String>();
+        List<String> keys = new ArrayList<>();
         keys.add(key);
-        List<String> argves = new ArrayList<String>();
-        jedis.auth("youxin11");
+        List<String> argv = new ArrayList<>();
+//        jedis.auth("youxin11");
         String luaScript = jedis.scriptLoad(count);
-        System.out.println(luaScript);
-        object = jedis.evalsha(luaScript, keys, argves);
+        logger.info("luaScript:" + luaScript);
+        object = jedis.evalsha(luaScript, keys, argv);
         } catch (Exception e) {
             logger.error("统计访问次数失败！！！",e);
             return "0";
         }
-        return  object;
+        return object;
     }
 
     /**
      * 统计访问次数
      */
-    public static void vistorCount(String key) {
-
-        Jedis jedis = null;
-        Object object = null;
+    public static void visitorCount(String key) {
+        Jedis jedis;
         try {
             jedis = RedisManager.getJedis();
             String count =
                     "local num=redis.call('incr',KEYS[1]) return num";
-            List<String> keys = new ArrayList<String>();
+            List<String> keys = new ArrayList<>();
             keys.add(key);
-            List<String> argves = new ArrayList<String>();
-            jedis.auth("youxin11");
+            List<String> args = new ArrayList<>();
+//            jedis.auth("youxin11");
             String luaScript = jedis.scriptLoad(count);
-            System.out.println(luaScript);
-            jedis.evalsha(luaScript, keys, argves);
+            logger.info("luaScript:" + luaScript);
+            jedis.evalsha(luaScript, keys, args);
         } catch (Exception e) {
-            logger.error("统计访问次数失败！！！",e);
+            logger.error("统计访问次数失败！！！", e);
         }
     }
 }

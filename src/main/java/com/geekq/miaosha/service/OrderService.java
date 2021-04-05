@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
-import static com.geekq.miaosha.common.Constanst.orderStaus.ORDER_NOT_PAY;
+import static com.geekq.miaosha.common.Constant.orderStatus.ORDER_NOT_PAY;
 
 @Service
 public class OrderService {

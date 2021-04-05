@@ -28,7 +28,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/goods")
 public class GoodsController extends BaseController {
-    private static Logger log = LoggerFactory.getLogger(GoodsController.class);
+    private static final Logger log = LoggerFactory.getLogger(GoodsController.class);
 
     @Autowired
     private MiaoShaUserService userService;

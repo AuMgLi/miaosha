@@ -15,16 +15,17 @@ public class ResultGeekQ<T> extends AbstractResult implements Serializable {
     protected ResultGeekQ(ResultStatus status) {
         super(status);
     }
+
     public static <T> ResultGeekQ<T> build() {
-        return new ResultGeekQ(ResultStatus.SUCCESS, (String)null);
+        return new ResultGeekQ<>(ResultStatus.SUCCESS, null);
     }
 
     public static <T> ResultGeekQ<T> build(String message) {
-        return new ResultGeekQ(ResultStatus.SUCCESS, message);
+        return new ResultGeekQ<>(ResultStatus.SUCCESS, message);
     }
 
     public static <T> ResultGeekQ<T> error(ResultStatus status) {
-        return new ResultGeekQ<T>(status);
+        return new ResultGeekQ<>(status);
     }
 
     public T getData() {
