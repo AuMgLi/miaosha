@@ -1,4 +1,4 @@
-package com.geekq.miaosha.redis;
+package com.geekq.miaosha.redis.key;
 
 public class MiaoshaKey extends BasePrefix {
 
@@ -9,5 +9,4 @@ public class MiaoshaKey extends BasePrefix {
 	public static MiaoshaKey getMiaoshaPath = new MiaoshaKey(60, "mp");
 	public static MiaoshaKey getMiaoshaVerifyCode = new MiaoshaKey(300, "vc");
 	public static MiaoshaKey getMiaoshaVerifyCodeRegister = new MiaoshaKey(300, "register");
-
 }

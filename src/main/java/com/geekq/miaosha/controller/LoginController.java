@@ -6,8 +6,6 @@ import com.geekq.miaosha.redis.redismanager.RedisLua;
 import com.geekq.miaosha.service.MiaoShaUserService;
 import com.geekq.miaosha.vo.LoginVo;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +33,7 @@ public class LoginController {
         //未完成
         RedisLua.visitorCount(COUNT_LOGIN);
         String count = RedisLua.getVisitorCount(COUNT_LOGIN).toString();
-        log.info("访问网站的次数为:{}", count);
+        log.info("访问网站的次数为: {}", count);
         model.addAttribute("count", count);
         return "login";
     }
@@ -48,7 +46,6 @@ public class LoginController {
         userService.login(response, loginVo);
         return result;
     }
-
 
     @RequestMapping("/create_token")
     @ResponseBody

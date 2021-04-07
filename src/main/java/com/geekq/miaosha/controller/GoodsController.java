@@ -2,7 +2,7 @@ package com.geekq.miaosha.controller;
 
 import com.geekq.miaosha.common.resultbean.ResultGeekQ;
 import com.geekq.miaosha.domain.MiaoshaUser;
-import com.geekq.miaosha.redis.GoodsKey;
+import com.geekq.miaosha.redis.key.GoodsKey;
 import com.geekq.miaosha.redis.RedisService;
 import com.geekq.miaosha.service.GoodsService;
 import com.geekq.miaosha.service.MiaoShaUserService;

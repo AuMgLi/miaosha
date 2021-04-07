@@ -4,7 +4,7 @@ import com.geekq.miaosha.dao.OrderDao;
 import com.geekq.miaosha.domain.MiaoshaOrder;
 import com.geekq.miaosha.domain.MiaoshaUser;
 import com.geekq.miaosha.domain.OrderInfo;
-import com.geekq.miaosha.redis.OrderKey;
+import com.geekq.miaosha.redis.key.OrderKey;
 import com.geekq.miaosha.redis.RedisService;
 import com.geekq.miaosha.utils.DateTimeUtils;
 import com.geekq.miaosha.vo.GoodsVo;

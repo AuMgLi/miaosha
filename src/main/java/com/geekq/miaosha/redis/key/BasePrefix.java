@@ -1,6 +1,8 @@
-package com.geekq.miaosha.redis;
+package com.geekq.miaosha.redis.key;
 
-public abstract class BasePrefix implements KeyPrefix {
+import com.geekq.miaosha.redis.key.KeyPrefix;
+
+public class BasePrefix implements KeyPrefix {
 
     private final int expireSeconds;
     private final String prefix ;

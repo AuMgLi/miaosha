@@ -1,6 +1,6 @@
 package com.geekq.miaosha.controller;
 
-import com.geekq.miaosha.redis.KeyPrefix;
+import com.geekq.miaosha.redis.key.KeyPrefix;
 import com.geekq.miaosha.redis.RedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

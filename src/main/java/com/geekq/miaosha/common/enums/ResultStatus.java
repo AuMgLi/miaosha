@@ -12,7 +12,7 @@ package com.geekq.miaosha.common.enums;
  */
 public enum ResultStatus {
     SUCCESS(0, "成功"),
-    FAILD(-1, "失败"),
+    FAILED(-1, "失败"),
     EXCEPTION(-1, "系统异常"),
     PARAM_ERROR(10000, "参数错误"),
     SYSTEM_ERROR(10001, "系统错误"),
@@ -28,8 +28,8 @@ public enum ResultStatus {
     /**
      * 注册登录
      */
-    RESIGETR_SUCCESS(20000,"注册成功!"),
-    RESIGETER_FAIL(200001,"注册失败!"),
+    REGISTER_SUCCESS(20000,"注册成功!"),
+    REGISTER_FAIL(200001,"注册失败!"),
     CODE_FAIL(200002,"验证码不一致!"),
 
     /**

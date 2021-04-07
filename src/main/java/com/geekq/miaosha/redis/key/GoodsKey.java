@@ -1,6 +1,6 @@
-package com.geekq.miaosha.redis;
+package com.geekq.miaosha.redis.key;
 
-public class GoodsKey extends BasePrefix{
+public class GoodsKey extends BasePrefix {
 
 	private GoodsKey(int expireSeconds, String prefix) {
 		super(expireSeconds, prefix);

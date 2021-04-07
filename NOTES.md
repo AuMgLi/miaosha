@@ -28,4 +28,10 @@ FULLTEXT，主要用来查找文本中的关键字，只能在 CHAR、VARCHAR �
 # SpringBoot
 >spring boot允许你通过命名约定按照一定的格式(application-{profile}.properties)来定义多个配置文件，然后通过在application.properties通过spring.profiles.active来具体激活一个或者多个配置文件
 
-> 
+> RegisterController::getCaptcha()
+> 报错：getOutputStream() has already been called for this response. 
+> 原因：没有加@ResponseBody.
+>>@ResponseBody这个注解通常使用在控制层（controller）的方法上，其作用是将方法的返回值以特定的格式写入到response的body区域，进而将数据返回给客户端。当方法上面没有写ResponseBody,底层会将方法的返回值封装为ModelAndView对象。
+>> @ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】，在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。
+
+> d20210406. JS不能处理byte[]，需将BufferedImage转为byte[]再通过Base64编码为String，再通过VO传给前端。

@@ -1,6 +1,7 @@
 package com.geekq.miaosha.redis;
 
 import com.alibaba.fastjson.JSON;
+import com.geekq.miaosha.redis.key.KeyPrefix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,9 @@ public class RedisService {
 	JedisPool jedisPool;
 
 	/**
-	 * 设置失效时间
+	 * SET if Not eXists
 	 * @param key:
 	 * @param value:
-	 * @return
 	 */
 	public Long setnx(String key, String value){
 		Jedis jedis =null;
@@ -41,7 +41,6 @@ public class RedisService {
 	 * 设置key的有效期，单位是秒
 	 * @param key:
 	 * @param exTime:
-	 * @return
 	 */
 	public Long expire(String key, int exTime){
 		Jedis jedis = null;
@@ -152,7 +151,7 @@ public class RedisService {
 		 try {
 			 jedis =  jedisPool.getResource();
 			//生成真正的key
-			String realKey  = prefix.getPrefix() + key;
+			String realKey = prefix.getPrefix() + key;
 			long ret = jedis.del(realKey);
 			return ret > 0;
 		 } finally {
@@ -190,7 +189,7 @@ public class RedisService {
 		 }
 	}
 
-    public  Long del(String key){
+    public Long del(String key){
         Jedis jedis = null;
         Long result = null;
         try {
